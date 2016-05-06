@@ -19,19 +19,20 @@ defmodule RabbitExchangeTypeRecentHistory do
                        {:requires, :database},
                        {:enables, :external_infrastructure}]}
 
-  defrecord :exchange, Record.extract(:exchange,
+  require Record
+  Record.defrecord :exchange, Record.extract(:exchange,
                                      from_lib: "rabbit_common/include/rabbit.hrl")
 
-  defrecord :delivery, Record.extract(:delivery,
+  Record.defrecord :delivery, Record.extract(:delivery,
                                      from_lib: "rabbit_common/include/rabbit.hrl")
 
-  defrecord :binding, Record.extract(:binding,
+  Record.defrecord :binding, Record.extract(:binding,
                                      from_lib: "rabbit_common/include/rabbit.hrl")
 
-  defrecord :basic_message, Record.extract(:basic_message,
+  Record.defrecord :basic_message, Record.extract(:basic_message,
                                      from_lib: "rabbit_common/include/rabbit.hrl")
 
-  defrecord :cached, key: nil, content: nil
+  Record.defrecord :cached, key: nil, content: nil
 
   def description() do
     [{:name, <<"x-recent-history">>}, {:description, <<"Recent History Exchange.">>}]
